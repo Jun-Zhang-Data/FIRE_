@@ -6,24 +6,24 @@ import httpx
 import markdown
 from bs4 import BeautifulSoup
 
-#from . import (
-#    DOC_NAMES,
-#    DOCS_DIR,
-#    SCHEMA_NAMES,
-#    all_properties,
-#    property_doc_name,
-#    schema_enum_registry,
-#)
+from . import (
+    DOC_NAMES,
+    DOCS_DIR,
+    SCHEMA_NAMES,
+    all_properties,
+    property_doc_name,
+    schema_enum_registry,
+)
 
-import __init__
-from __init__ import DOC_NAMES
-from __init__ import EXAMPLES_DIR
-from __init__ import EXAMPLE_FILES
-from __init__ import SCHEMAS_DIR
-from __init__ import SCHEMA_FILES
-from __init__ import SCHEMA_NAMES
-from __init__ import schema_enum_registry
-from __init__ import fire_stats
+#import __init__
+#from __init__ import DOC_NAMES
+#from __init__ import EXAMPLES_DIR
+#from __init__ import EXAMPLE_FILES
+#from __init__ import SCHEMAS_DIR
+#from __init__ import SCHEMA_FILES
+#from __init__ import SCHEMA_NAMES
+#from __init__ import schema_enum_registry
+#from __init__ import fire_stats
 
 class TestDocs(unittest.TestCase):
     def test_property_has_docs(self):
@@ -124,7 +124,7 @@ class TestDocs(unittest.TestCase):
                 _file = os.path.join(DOCS_DIR, property_docs)
 
                 for v in values:
-                    with open(_file) as enum_doc:
+                    with open(_file,'r', encoding='utf-8') as enum_doc:
                         assert "### {}".format(v) in enum_doc.read(), error_msg(
                             schema_name, v, enum
                         )  # noqa
@@ -141,7 +141,7 @@ class TestDocs(unittest.TestCase):
 
         for docname in DOC_NAMES:
             filename = os.path.join(DOCS_DIR, f"{docname}.md")
-            with open(filename) as f:
+            with open(filename, 'r', encoding='utf-8') as f:
                 doc_html = markdown.markdown(f.read())
                 soup = BeautifulSoup(doc_html, features="html.parser")
                 links = soup.find_all("a")

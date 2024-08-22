@@ -6,26 +6,26 @@ import pytest
 from collections import OrderedDict
 from jsonschema import Draft4Validator
 from jsonschema.exceptions import ValidationError
-###from . import (
-###    DOC_NAMES,
-###    EXAMPLES_DIR,
-###    EXAMPLE_FILES,
-###    SCHEMAS_DIR,
-###    SCHEMA_FILES,
-###    SCHEMA_NAMES,
-###    schema_enum_registry,
-###    fire_stats,
-###)
+from . import (
+    DOC_NAMES,
+    EXAMPLES_DIR,
+    EXAMPLE_FILES,
+    SCHEMAS_DIR,
+    SCHEMA_FILES,
+    SCHEMA_NAMES,
+    schema_enum_registry,
+    fire_stats,
+)
 
-import __init__
-from __init__ import DOC_NAMES
-from __init__ import EXAMPLES_DIR
-from __init__ import EXAMPLE_FILES
-from __init__ import SCHEMAS_DIR
-from __init__ import SCHEMA_FILES
-from __init__ import SCHEMA_NAMES
-from __init__ import schema_enum_registry
-from __init__ import fire_stats
+#import __init__
+#from __init__ import DOC_NAMES
+#from __init__ import EXAMPLES_DIR
+#from __init__ import EXAMPLE_FILES
+#from __init__ import SCHEMAS_DIR
+#from __init__ import SCHEMA_FILES
+#from __init__ import SCHEMA_NAMES
+#from __init__ import schema_enum_registry
+#from __init__ import fire_stats
 
 class TestSchemas(unittest.TestCase):
     def test_schemas_and_docs_found(self):
@@ -34,11 +34,11 @@ class TestSchemas(unittest.TestCase):
 
     def test_jsons_are_valid(self):
         for schema_name in SCHEMA_FILES:
-            with open(os.path.join(SCHEMAS_DIR, schema_name)) as json_schema:
+            with open(os.path.join(SCHEMAS_DIR, schema_name),'r', encoding='utf-8') as json_schema:
                 assert json.load(json_schema)
 
         for example_name in EXAMPLE_FILES:
-            with open(os.path.join(EXAMPLES_DIR, example_name)) as json_schema:
+            with open(os.path.join(EXAMPLES_DIR, example_name),'r', encoding='utf-8') as json_schema:
                 assert json.load(json_schema)
 
     def test_enum_registry(self):
@@ -118,7 +118,7 @@ class TestSchemas(unittest.TestCase):
         human readable, it helps when properties are in alphabetical order.
         """
         for schema_name in SCHEMA_FILES:
-            with open(os.path.join(SCHEMAS_DIR, schema_name)) as json_schema:
+            with open(os.path.join(SCHEMAS_DIR, schema_name),'r', encoding='utf-8') as json_schema:
                 schema = json.load(json_schema, object_pairs_hook=OrderedDict)  # noqa
                 if "properties" in schema:
                     properties = schema["properties"].keys()
@@ -177,7 +177,7 @@ class TestSchemas(unittest.TestCase):
         errs = []
         required = ["description", "type"]
         for schema_name in SCHEMA_FILES:
-            with open(os.path.join(SCHEMAS_DIR, schema_name)) as json_schema:
+            with open(os.path.join(SCHEMAS_DIR, schema_name),'r', encoding='utf-8') as json_schema:
                 schema = json.load(json_schema)
 
             if schema_name != "common.json":
@@ -201,7 +201,7 @@ class TestSchemas(unittest.TestCase):
 
 
 class TestExamples:
-    with open(os.path.join(SCHEMAS_DIR, "example.json")) as ff:
+    with open(os.path.join(SCHEMAS_DIR, "example.json"),'r', encoding='utf-8') as ff:
         example_schema = json.load(ff)
 
     validator = Draft4Validator(example_schema)
@@ -211,14 +211,14 @@ class TestExamples:
         Examples should match the example schema found in /v1-dev/example.json
         """
         for example_name in EXAMPLE_FILES:
-            with open(os.path.join(EXAMPLES_DIR, example_name)) as ff:
+            with open(os.path.join(EXAMPLES_DIR, example_name),'r', encoding='utf-8') as ff:
                 ex = json.load(ff)
 
             self.validator.validate(instance=ex)
 
     def test_ex_titles_match_filenames(self):
         for example_name in EXAMPLE_FILES:
-            with open(os.path.join(EXAMPLES_DIR, example_name)) as ff:
+            with open(os.path.join(EXAMPLES_DIR, example_name),'r', encoding='utf-8') as ff:
                 ex = json.load(ff)
 
             assert ex["title"] + ".json" == example_name
@@ -226,7 +226,7 @@ class TestExamples:
     def test_ex_titles_are_unique(self):
         titles = []
         for example_name in EXAMPLE_FILES:
-            with open(os.path.join(EXAMPLES_DIR, example_name)) as ff:
+            with open(os.path.join(EXAMPLES_DIR, example_name),'r', encoding='utf-8') as ff:
                 ex = json.load(ff)
 
             assert ex["title"] not in titles
