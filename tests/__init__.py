@@ -6,7 +6,8 @@ import os
 root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 ROOT_DIR = os.path.join(root, 'fire_master')
 
-SCHEMAS_DIR = os.path.join(ROOT_DIR, "v1-dev")
+#SCHEMAS_DIR = os.path.join(ROOT_DIR, "v1-dev")
+SCHEMAS_DIR = os.path.join(os.path.dirname(__file__), '..', 'v1-dev')
 
 DOCS_DIR = os.path.join(ROOT_DIR, "documentation", "properties")
 EXAMPLES_DIR = os.path.join(ROOT_DIR, "examples")
