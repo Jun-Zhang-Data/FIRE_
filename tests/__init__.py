@@ -3,14 +3,17 @@ import json
 import os
 
 
-root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-ROOT_DIR = os.path.join(root, 'fire_master')
+#root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+#ROOT_DIR = os.path.join(root, 'fire_master')
+#SCHEMAS_DIR = os.path.join(ROOT_DIR, "v1-dev")
+#DOCS_DIR = os.path.join(ROOT_DIR, "documentation", "properties")
+#EXAMPLES_DIR = os.path.join(ROOT_DIR, "examples")
 
-SCHEMAS_DIR = os.path.join(ROOT_DIR, "v1-dev")
+HOME = os.path.join(os.path.dirname(__file__), "..")
+SCHEMAS_DIR = os.path.join(HOME, "v1-dev")
+DOCS_DIR = os.path.join(HOME, "documentation", "properties")
+EXAMPLES_DIR = os.path.join(HOME, "examples")
 
-
-DOCS_DIR = os.path.join(ROOT_DIR, "documentation", "properties")
-EXAMPLES_DIR = os.path.join(ROOT_DIR, "examples")
 _, _, filenames = next(os.walk(SCHEMAS_DIR), (None, None, []))
 SCHEMA_FILES = [f for f in filenames if f.endswith(".json")]
 
