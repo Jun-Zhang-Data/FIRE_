@@ -201,7 +201,7 @@ class TestSchemas(unittest.TestCase):
 
 
 class TestExamples:
-    with open(os.path.join(SCHEMAS_DIR, "example.json"),'r', encoding='utf-8') as ff:
+    with open(os.path.join(SCHEMAS_DIR, "example.json")) as ff:
         example_schema = json.load(ff)
 
     validator = Draft4Validator(example_schema)
