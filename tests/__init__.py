@@ -5,14 +5,14 @@ import os
 
 root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 ROOT_DIR = os.path.join(root, 'fire_master')
-print(ROOT_DIR)
+
 SCHEMAS_DIR = os.path.join(ROOT_DIR, "v1-dev")
-print(SCHEMAS_DIR)
+
 DOCS_DIR = os.path.join(ROOT_DIR, "documentation", "properties")
 EXAMPLES_DIR = os.path.join(ROOT_DIR, "examples")
 _, _, filenames = next(os.walk(SCHEMAS_DIR), (None, None, []))
 SCHEMA_FILES = [f for f in filenames if f.endswith(".json")]
-print(SCHEMA_FILES)
+
 SCHEMA_NAMES = [f.split(".json")[0] for f in SCHEMA_FILES]
 
 _, _, filenames = next(os.walk(DOCS_DIR), (None, None, []))
