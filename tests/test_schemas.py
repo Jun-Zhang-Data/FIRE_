@@ -211,7 +211,7 @@ class TestExamples:
         Examples should match the example schema found in /v1-dev/example.json
         """
         for example_name in EXAMPLE_FILES:
-            with open(os.path.join(EXAMPLES_DIR, example_name),'r', encoding='utf-8') as ff:
+            with open(os.path.join(EXAMPLES_DIR, example_name)) as ff:
                 ex = json.load(ff)
 
             self.validator.validate(instance=ex)
